@@ -5,3 +5,5 @@ Dance
 Read
 WakeUp
 Run
+Play
+Level Up
