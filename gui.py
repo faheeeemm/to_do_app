@@ -33,22 +33,30 @@ while True:
             window['todos'].update(values=todos)
             window['todo'].update(value="")
         case "Edit":
-            todo_to_edit = values['todos'][0]
-            new_todo = values['todo'] + "\n"
-            todos = functions.get_todos()
-            index = todos.index(todo_to_edit)
-            todos[index]=new_todo
-            functions.write_todos(todos)
-            window['todos'].update(values = todos)
+            try:
+                todo_to_edit = values['todos'][0]
+                new_todo = values['todo'] + "\n"
+                todos = functions.get_todos()
+                index = todos.index(todo_to_edit)
+                todos[index]=new_todo
+                functions.write_todos(todos)
+                window['todos'].update(values = todos)
+            except IndexError:
+                sg.popup("Please select a To-Do",
+                         font=('Helvetica', 10))
         case "todos":
             window['todo'].update(value = values["todos"][0])
         case "Complete":
-            todo_completed = values['todo']
-            todos = functions.get_todos()
-            todos.remove(todo_completed)
-            functions.write_todos(todos)
-            window['todos'].update(values = todos)
-            window['todo'].update(value="")
+            try:
+                todo_completed = values['todo']
+                todos = functions.get_todos()
+                todos.remove(todo_completed)
+                functions.write_todos(todos)
+                window['todos'].update(values = todos)
+                window['todo'].update(value="")
+            except ValueError:
+                sg.popup("Please select a To-Do",
+                         font=('Helvetica', 10))
         case "Exit":
             break
         case sg.WIN_CLOSED:
