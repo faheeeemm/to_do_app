@@ -1,5 +1,9 @@
 from modules import functions
 import PySimpleGUI as sg
+import os
+if not os.path.exists(functions.FILEPATH):
+    with open(functions.FILEPATH,'w') as file:
+        pass
 
 app_label = sg.Text("Type in a To Do : ")
 input_box = sg.InputText(tooltip="Enter To Do here", key ='todo')
